@@ -1,0 +1,160 @@
+---
+allowed-tools: Read, Glob, Grep, LS, Bash(python3:*), Bash(find:*)
+description: Activate extended thinking for hard problems — architecture decisions, debugging non-obvious root causes, algorithm design, security threat modeling, multi-step refactoring.
+---
+
+# /think — Extended Thinking Mode
+
+You are now in **EXTENDED THINKING MODE**. Apply maximum reasoning depth before responding.
+
+## Problem to Solve
+$ARGUMENTS
+
+---
+
+## WHEN THIS COMMAND IS APPROPRIATE
+
+Extended thinking is ONLY worth its token cost for:
+- System architecture with significant tradeoffs (multiple valid approaches with different long-term implications)
+- Non-obvious debugging (error not immediately traceable from stack trace or logs)
+- Security threat modeling (attack surface analysis, trust boundary decisions)
+- Algorithm design with competing approaches (time/space/complexity tradeoffs)
+- Multi-step refactoring with cascading dependency effects
+- Any task where the wrong first answer causes significant rework
+
+If the problem is straightforward, say so explicitly instead of using thinking tokens on simple CRUD or boilerplate.
+
+---
+
+## THINKING CONFIGURATION
+
+When calling the Anthropic API programmatically with extended thinking:
+
+```python
+response = client.messages.create(
+    model="claude-sonnet-4-6",          # Extended thinking requires Sonnet 3.7+
+    max_tokens=16000,                    # Must exceed budget_tokens
+    thinking={
+        "type": "enabled",
+        "budget_tokens": 10000           # Start at 10k, increase for harder problems
+    },
+    messages=[{"role": "user", "content": YOUR_PROMPT}]
+)
+```
+
+**Budget guidelines:**
+| Problem complexity | budget_tokens |
+|---|---|
+| Moderate (single system, clear tradeoffs) | 5,000–8,000 |
+| Hard (multi-system, unclear tradeoffs) | 10,000–16,000 |
+| Very hard (novel problem, deep uncertainty) | 16,000–32,000 |
+| Maximum (use sparingly) | up to context window |
+
+**Hard constraints:**
+- Minimum `budget_tokens`: 1,024 (API rejects lower values)
+- `max_tokens` MUST be greater than `budget_tokens`
+- NOT compatible with: `temperature`, `top_p`, `top_k` modifications
+- NOT compatible with: response pre-filling
+- Thinking tokens count as output tokens for billing
+
+---
+
+## HOW TO HANDLE THINKING BLOCKS IN RESPONSES
+
+Thinking blocks have a cryptographic `signature` field. Rules:
+1. **Never modify** thinking block content or signatures
+2. **Always preserve** thinking blocks when passing conversation history back to the API
+3. **Redacted thinking blocks** (`type: "redacted_thinking"`) must also be preserved — pass them back as-is
+
+```python
+# Correct: preserve all blocks including thinking
+def process_response(response):
+    for block in response.content:
+        if block.type == "thinking":
+            # Log it, display it, but don't modify it
+            print(f"Thinking: {block.thinking[:200]}...")
+        elif block.type == "redacted_thinking":
+            # Safety system flagged this — still preserve it for multi-turn
+            pass
+        elif block.type == "text":
+            print(f"Answer: {block.text}")
+    
+    # When continuing conversation, pass full content back
+    return response.content  # includes thinking blocks with signatures
+```
+
+---
+
+## THINKING BLOCK PARSING
+
+```python
+def extract_thinking_and_answer(response):
+    thinking_blocks = []
+    text_blocks = []
+    
+    for block in response.content:
+        if block.type == "thinking":
+            thinking_blocks.append({
+                "content": block.thinking,
+                "signature": getattr(block, "signature", None)
+            })
+        elif block.type == "redacted_thinking":
+            thinking_blocks.append({
+                "type": "redacted",
+                "data": getattr(block, "data", None)
+            })
+        elif block.type == "text":
+            text_blocks.append(block.text)
+    
+    return thinking_blocks, text_blocks
+```
+
+---
+
+## STREAMING WITH EXTENDED THINKING
+
+```python
+with client.messages.stream(
+    model="claude-sonnet-4-6",
+    max_tokens=16000,
+    thinking={"type": "enabled", "budget_tokens": 10000},
+    messages=[{"role": "user", "content": prompt}]
+) as stream:
+    for event in stream:
+        if event.type == "content_block_start":
+            block_type = event.content_block.type
+            # "thinking", "redacted_thinking", or "text"
+        elif event.type == "content_block_delta":
+            if hasattr(event.delta, "thinking"):
+                # Streaming thinking content
+                pass
+            elif hasattr(event.delta, "text"):
+                # Streaming final answer
+                print(event.delta.text, end="", flush=True)
+```
+
+---
+
+## NOW: APPLY EXTENDED THINKING TO THE PROBLEM
+
+Reason deeply through the problem in $ARGUMENTS.
+
+Structure your response:
+
+### Problem Analysis
+What is actually being asked. Restate it precisely.
+
+### Key Constraints & Unknowns
+What must be true in any valid solution. What is unclear and needs assumptions.
+
+### Approaches Considered
+At least 2-3 meaningfully different approaches. For each: tradeoffs, when it wins, when it fails.
+
+### Decision
+Which approach and why. Be specific about what tipped the decision.
+
+### Implementation
+Concrete, complete. No placeholders.
+
+### Edge Cases & Failure Modes
+What could break this. What assumptions are load-bearing.

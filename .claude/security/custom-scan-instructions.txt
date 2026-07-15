@@ -1,0 +1,32 @@
+## SECURACY.AI — CUSTOM SECURITY SCAN INSTRUCTIONS
+## Appended to default security-review categories. Stack: FastAPI, Vue.js, RAG, MCP.
+
+---
+
+**RAG Pipeline Security:**
+- Prompt injection via user-controlled architecture descriptions injected into LLM system prompts without sanitization
+- Vector store poisoning — untrusted content written to the embedding database that could corrupt threat analysis outputs
+- Retrieval manipulation — crafted inputs that cause the RAG pipeline to retrieve irrelevant or attacker-controlled CAPEC/CWE entries
+- Context window exfiltration — injected instructions in user input designed to leak system prompt or other users' analysis results
+
+**MCP Server Security:**
+- Tool call parameter injection — MCP tool arguments that are not validated before being passed to downstream functions
+- Unauthenticated tool exposure — MCP tools callable without verifying the caller is a trusted Claude Desktop instance
+- Tool output tampering — MCP tool results that include unsanitized content rendered in Claude's context without escaping
+- Excessive tool permissions — MCP tools granted filesystem or network access beyond their stated purpose
+
+**API Security (FastAPI-specific):**
+- Pydantic schema bypass — use of `model_config` settings like `arbitrary_types_allowed` or `orm_mode` that weakens validation
+- Background task injection — untrusted input passed to FastAPI BackgroundTasks without validation
+- Dependency override abuse — test-only dependency overrides left accessible in production builds
+- Streaming response injection — user-controlled content injected into SSE or streaming responses without sanitization
+
+**Threat Model Data Integrity:**
+- CAPEC/CWE ID forgery — user input that can cause the system to attribute findings to incorrect CAPEC/CWE identifiers
+- Severity score manipulation — inputs crafted to inflate or deflate threat severity scores in the output model
+- DFD (Data Flow Diagram) injection — untrusted node/edge labels in DFD generation that could cause downstream misrepresentation
+
+**Compliance & Data Handling:**
+- Architecture descriptions containing PII or credentials being stored in logs or the vector database without sanitization
+- Multi-tenant data isolation — one user's threat analysis results being accessible to another user's session
+- Analysis result persistence — threat models stored with insufficient access controls allowing unauthorized retrieval
