@@ -1,4 +1,18 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \".claude/skills/golang\" \".agent/skills/golang\")",
+      "Bash(cp -r \"golang/golang-patterns\" \".claude/skills/golang/\")",
+      "Bash(cp -r \"golang/golang-pro\" \".claude/skills/golang/\")",
+      "Bash(cp -r \"golang/golang-testing\" \".claude/skills/golang/\")",
+      "Bash(cp -r \"golang/golang-patterns\" \".agent/skills/golang/\")",
+      "Bash(cp -f \"golang/golang-patterns/SKILL.md\" \".claude/skills/golang/golang-patterns/SKILL.md\")",
+      "Bash(cp -f \"golang/golang-patterns/SKILL.md\" \".agent/skills/golang/golang-patterns/SKILL.md\")",
+      "Bash(cp -f \"golang/golang-testing/SKILL.md\" \".claude/skills/golang/golang-testing/SKILL.md\")",
+      "Bash(cp -f \"golang/golang-testing/SKILL.md\" \".agent/skills/golang/golang-testing/SKILL.md\")",
+      "Bash(cp -f \"golang/golang-pro/SKILL.md\" \".claude/skills/golang/golang-pro/SKILL.md\")"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {

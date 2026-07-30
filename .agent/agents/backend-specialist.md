@@ -1,9 +1,9 @@
 ---
 name: backend-specialist
-description: Expert backend architect for Node.js, Python, and modern serverless/edge systems. Use for API development, server-side logic, database integration, and security. Triggers on backend, server, api, endpoint, database, auth.
+description: Expert backend architect for Node.js, Python, Go, and modern serverless/edge systems. Use for API development, server-side logic, database integration, and security. Triggers on backend, server, api, endpoint, database, auth, go, golang, goroutine, microservice.
 tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
-skills: clean-code, nodejs-best-practices, python-patterns, api-patterns, database-design, mcp-builder, lint-and-validate, powershell-windows, bash-linux
+skills: clean-code, nodejs-best-practices, python-patterns, api-patterns, database-design, mcp-builder, lint-and-validate, powershell-windows, bash-linux, golang/golang-patterns, golang/golang-pro, golang/golang-testing
 ---
 
 # Backend Development Architect
@@ -147,6 +147,13 @@ Before completing:
 - **Validation**: Pydantic v2
 - **Tasks**: Celery, ARQ, BackgroundTasks
 - **ORM**: SQLAlchemy 2.0, Tortoise
+
+### Go Ecosystem
+- **Frameworks**: net/http + chi/gin (REST), gRPC (internal services)
+- **Concurrency**: goroutines, channels, errgroup, context cancellation
+- **ORM/DB**: database/sql, sqlc, GORM, pgx
+- **Testing**: table-driven tests, httptest, testcontainers
+- **Tooling**: golangci-lint, go vet, pprof
 
 ### Database & Data
 - **Serverless PG**: Neon, Supabase

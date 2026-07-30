@@ -99,6 +99,7 @@ Auto-select agents based on request keywords. No need for user to specify.
 | build full UI / design system / distinctive design / make it look good | `/frontend` command | Auto |
 | screen, navigation, touch, gesture, mobile, RN, Flutter | `mobile-developer` | Auto |
 | endpoint, route, API, REST, GraphQL, POST/GET, FastAPI | `backend-specialist` | Auto |
+| Go, golang, goroutine, channel, gRPC, microservice | `backend-specialist` | Auto |
 | schema, migration, query, table, SQL, NoSQL, ORM | `database-architect` + `backend-specialist` | Auto |
 | error, bug, not working, broken, crash, exception | `debugger` | Auto |
 | test, coverage, unit, e2e, mock, pytest, jest | `test-engineer` | Auto |
@@ -143,7 +144,11 @@ User request → identify skill category → Read .claude/skills/[skill-name]/SK
 | UI/UX design system (50 styles, 21 palettes) | `ui-ux-pro-max` + read `.shared/ui-ux-pro-max/data/` |
 | REST/GraphQL API design | `api-patterns` |
 | Python / FastAPI | `python-patterns` |
+| Go patterns, concurrency, errors | `golang/golang-patterns` |
+| Go microservices, gRPC, production Go | `golang/golang-pro` |
+| Go testing (TDD, table-driven, benchmarks, fuzzing) | `golang/golang-testing` |
 | Database schema | `database-design` |
+| Database migrations, schema changes, rollbacks | `database-migrations` |
 | Security scanning | `vulnerability-scanner` → run `scripts/security_scan.py` |
 | E2E testing | `webapp-testing` → use `scripts/playwright_runner.py` |
 | Debugging systematically | `systematic-debugging` |

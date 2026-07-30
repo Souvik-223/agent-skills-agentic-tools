@@ -9,7 +9,7 @@
 Antigravity Kit is a modular system consisting of:
 
 - **20 Specialist Agents** - Role-based AI personas
-- **36 Skills** - Domain-specific knowledge modules
+- **40 Skills** - Domain-specific knowledge modules
 - **11 Workflows** - Slash command procedures
 
 ---
@@ -20,7 +20,7 @@ Antigravity Kit is a modular system consisting of:
 .agent/
 ├── ARCHITECTURE.md          # This file
 ├── agents/                  # 20 Specialist Agents
-├── skills/                  # 36 Skills
+├── skills/                  # 40 Skills
 ├── workflows/               # 11 Slash Commands
 ├── rules/                   # Global Rules
 └── scripts/                 # Master Validation Scripts
@@ -37,8 +37,8 @@ Specialist AI personas for different domains.
 | `orchestrator` | Multi-agent coordination | parallel-agents, behavioral-modes |
 | `project-planner` | Discovery, task planning | brainstorming, plan-writing, architecture |
 | `frontend-specialist` | Web UI/UX | frontend-design, react-patterns, tailwind-patterns |
-| `backend-specialist` | API, business logic | api-patterns, nodejs-best-practices, database-design |
-| `database-architect` | Schema, SQL | database-design, prisma-expert |
+| `backend-specialist` | API, business logic | api-patterns, nodejs-best-practices, database-design, golang/golang-patterns, golang/golang-pro |
+| `database-architect` | Schema, SQL | database-design, prisma-expert, database-migrations |
 | `mobile-developer` | iOS, Android, RN | mobile-design |
 | `game-developer` | Game logic, mechanics | game-development |
 | `devops-engineer` | CI/CD, Docker | deployment-procedures, docker-expert |
@@ -57,7 +57,7 @@ Specialist AI personas for different domains.
 
 ---
 
-## 🧩 Skills (36)
+## 🧩 Skills (40)
 
 Modular knowledge domains that agents can load on-demand. based on task context.
 
@@ -80,12 +80,26 @@ Modular knowledge domains that agents can load on-demand. based on task context.
 | `nodejs-best-practices` | Node.js async, modules |
 | `python-patterns` | Python standards, FastAPI |
 
+### Go Development
+
+Nested multi-skill group (`skills/golang/`), same grouping pattern as `game-development/` and Claude's `gitnexus/`.
+**Triggers:** go, golang, goroutine, channel, gRPC, microservice, go.mod → route to `backend-specialist`.
+
+| Skill | Description |
+| ----- | ----------- |
+| `golang/golang-patterns` | Idiomatic Go patterns — error handling, concurrency (goroutines/channels/errgroup), interface design, package layout, memory/performance |
+| `golang/golang-pro` | Advanced Go 1.21+ expert persona — microservices, gRPC/GraphQL, DB integration, observability, production deployment |
+| `golang/golang-testing` | Go testing strategy — TDD, table-driven tests, mocking, httptest, benchmarks, fuzzing, coverage |
+
 ### Database
+
+**Triggers:** schema, migration, rollback, backfill, zero-downtime, ALTER TABLE → route to `database-architect`.
 
 | Skill | Description |
 | ----- | ----------- |
 | `database-design` | Schema design, optimization |
 | `prisma-expert` | Prisma ORM, migrations |
+| `database-migrations` | Safe, reversible schema/data migrations across PostgreSQL, MySQL, and common ORMs (Prisma, Drizzle, Kysely, Django, TypeORM, golang-migrate) — zero-downtime rollout and rollback strategy |
 
 ### TypeScript/JavaScript
 
@@ -268,7 +282,7 @@ For details, see [scripts/README.md](scripts/README.md)
 | Metric | Value |
 | ------ | ----- |
 | **Total Agents** | 20 |
-| **Total Skills** | 36 |
+| **Total Skills** | 40 |
 | **Total Workflows** | 11 |
 | **Total Scripts** | 2 (master) + 18 (skill-level) |
 | **Coverage** | ~90% web/mobile development |
@@ -281,8 +295,10 @@ For details, see [scripts/README.md](scripts/README.md)
 | ---- | ----- | ------ |
 | Web App | `frontend-specialist` | react-patterns, nextjs-best-practices |
 | API | `backend-specialist` | api-patterns, nodejs-best-practices |
+| Go Service / CLI | `backend-specialist` | golang/golang-patterns, golang/golang-pro, golang/golang-testing |
 | Mobile | `mobile-developer` | mobile-design |
 | Database | `database-architect` | database-design, prisma-expert |
+| Schema Migration | `database-architect` | database-migrations |
 | Security | `security-auditor` | vulnerability-scanner |
 | Testing | `test-engineer` | testing-patterns, webapp-testing |
 | Debug | `debugger` | systematic-debugging |
