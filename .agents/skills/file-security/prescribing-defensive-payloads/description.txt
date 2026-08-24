@@ -1,0 +1,7 @@
+Defense-payload author. Generates ModSec SecRule bodies, APF/iptables/nftables firewall entries, YARA signatures, and LMD hex patterns grounded in the observed threat signal.
+
+Activate this skill whenever a defensive artifact must be AUTHORED — a ModSec rule, an APF deny-host or deny-subnet block, a YARA signature for a webshell family, an LMD hex pattern for a staged dropper — or when substrate signals (CVE/advisory IDs, Magento install paths, pre-systemd distro markers) call for substrate-aware rule scoping, even if the request does not literally say "write a rule."
+
+Prefer synthesizing-evidence for cross-stream correlation; prefer gating-false-positives for evaluating an existing rule hit.
+
+Examples: "ModSec rule for eval(base64_decode()) POST body" / "APF deny block for ip-clusters.md" / "YARA rule for polyshell loader hex layer."

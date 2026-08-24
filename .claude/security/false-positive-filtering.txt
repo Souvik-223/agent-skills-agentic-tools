@@ -1,39 +1,35 @@
-## SECURACY.AI — FALSE POSITIVE FILTERING INSTRUCTIONS
-## Stack: Python/FastAPI backend, Vue.js frontend, RAG pipeline (CAPEC/CWE), MCP server
+## SECURITY REVIEW — FALSE POSITIVE FILTERING INSTRUCTIONS
+## Generic Baseline: Web APIs (FastAPI/Node), Modern Frontends (React/Vue), RAG Pipelines, and MCP Servers
 
 ---
 
 HARD EXCLUSIONS
 
-1. All default exclusions from the base security-review command apply (DOS, rate limiting, resource exhaustion, etc.)
-2. FastAPI automatic input validation via Pydantic models — do NOT flag missing manual validation when Pydantic schemas handle it.
-3. Vue.js template bindings (v-bind, {{ }}) — Vue escapes by default. Only flag v-html usage.
-4. MCP server tool definitions themselves — tool parameter schemas are not attack surfaces from untrusted users unless the MCP is exposed publicly.
-5. Python type hints and Pydantic field constraints — these are validation, not security issues.
-6. CAPEC/CWE database read operations — these are reference data lookups, not user-controlled injection points.
-7. Internal RAG pipeline prompts — including user context in RAG prompts is by design and is not prompt injection unless untrusted external content is injected without sanitization.
-8. Environment-based configuration (API keys via .env/os.environ) — these are assumed secured at infrastructure level.
-9. Async def endpoints without explicit rate limiting — rate limiting is handled at infrastructure/API gateway level.
-10. CORS configuration during development — only flag if CORS is wildcard in a file clearly marked for production.
+1. All default exclusions from the base security-review command apply (DOS, rate limiting, resource exhaustion in local development).
+2. Automatic input validation via schemas/types (e.g., Pydantic in Python, Zod/TypeScript in Node) — do NOT flag missing manual validation when validated schemas handle it.
+3. Modern frontend framework template bindings (JSX/React, Vue template `{{ }}` / `v-bind`) — frameworks escape by default. Only flag explicit raw HTML injection (`dangerouslySetInnerHTML`, `v-html`).
+4. Local MCP server tool definitions — tool parameter schemas are not attack surfaces from untrusted external users unless explicitly exposed to public network gateways.
+5. Strict type hints and schema constraints — these are validation guards, not security vulnerabilities.
+6. Curated reference database read operations — internal reference lookups are not user-controlled injection points.
+7. Internal RAG pipeline prompts — passing retrieved context into system prompts is standard architecture; only flag if untrusted user input is concatenated without sanitization or boundary fencing.
+8. Environment-based configuration (secrets/API keys via `.env` / `os.environ` / secret managers) — assumed secured at infrastructure level.
+9. Local development endpoints without explicit rate limiting — rate limiting is typically enforced at API gateway / reverse proxy level.
+10. CORS configuration in development profiles — only flag if wildcard CORS is used in a configuration explicitly targeting production.
 
 ---
 
-SIGNAL QUALITY CRITERIA (Securacy-specific additions)
+SIGNAL QUALITY CRITERIA
 
-1. FastAPI dependency injection: Is the vulnerability in an actual dependency function, or just the schema definition?
-2. RAG pipeline: Can the untrusted input actually reach the vector store write path, or only the read/query path?
-3. Threat model output: Securacy generates structured JSON threat models — is the vulnerability in the generation logic or just the output format?
-4. MCP server: Is the tool callable from an unauthenticated external source, or only via the Claude Desktop integration?
-5. Vue.js: Is the finding in a component that renders user-generated content, or internal application state?
+1. Dependency Injection / Middleware: Is the vulnerability in an actual execution path, or just an unused schema definition?
+2. RAG Pipelines: Can the untrusted input reach persistent vector store write paths, or only read/query paths?
+3. Tool Execution / MCP: Is the tool callable from unauthenticated external sources, or only via authorized local agent connections?
+4. Frontend: Is the finding in a component that renders unsanitized user-generated content, or internal application state?
 
 ---
 
-PRECEDENTS (Securacy-specific)
+PRECEDENTS
 
-1. CAPEC/CWE IDs are not user-controlled injection vectors — they are validated identifiers from a curated database.
-2. Architecture description inputs from users ARE untrusted and MUST be treated as potentially adversarial in the threat analysis pipeline.
-3. JSON threat model outputs do not need HTML escaping unless they are rendered directly in HTML without a framework.
-4. Python `subprocess` calls are expected for running validation scripts (.claude/scripts/) — only flag if they incorporate unsanitized user input directly.
-5. Logging threat analysis results (CAPEC/CWE matches, severity scores) is safe and not PII — do not flag.
-6. UUIDs used as session/analysis identifiers are assumed unguessable.
-7. FastAPI OAuth2/JWT dependencies are assumed correctly configured — only flag if there is a concrete bypass in the actual implementation code.
+1. Standard identifiers and UUIDs are not user-controlled injection vectors when properly parameterized in ORM/SQL queries.
+2. User-provided architectural, text, or file inputs ARE untrusted and MUST be sanitized before execution or shell invocation.
+3. Python `subprocess` calls for running internal scripts (`.agents/scripts/`, `.claude/scripts/`) are expected — only flag if they concatenate unsanitized user input into shell strings.
+4. JWT / OAuth2 middleware standard implementations are assumed valid unless there is a concrete logic bypass or missing signature validation.
