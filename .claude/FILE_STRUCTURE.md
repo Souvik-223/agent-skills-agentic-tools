@@ -135,6 +135,7 @@ your-project/
 │   ├── systematic-debugging/
 │   ├── tailwind-patterns/
 │   ├── tdd-workflow/
+│   ├── tech-blogging/
 │   ├── testing-patterns/
 │   ├── theme-factory/
 │   ├── vulnerability-scanner/

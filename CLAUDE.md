@@ -75,7 +75,7 @@ Auto-select agents based on request keywords. No need for user to specify.
 | slow, optimize, bundle, Lighthouse, Web Vitals, perf | `performance-optimizer` | Auto |
 | requirements, user story, backlog, MVP, sprint | `product-owner` / `product-manager` | Auto |
 | SEO, ranking, meta tags, schema markup, GEO AI search | `seo-specialist` | Auto |
-| README, docs, JSDoc, API reference, changelog | `documentation-writer` | Auto |
+| README, docs, JSDoc, API reference, changelog, blog posts, technical articles | `documentation-writer` | Auto |
 | refactor, legacy, technical debt, code smell | `code-archaeologist` | Auto |
 | build full app / create new project / multi-domain task | `orchestrator` → multi-agent (ask first) | Confirm |
 | codebase exploration, understand structure | `explorer-agent` | Auto |
@@ -122,6 +122,7 @@ User request → identify skill category → Read .claude/skills/[skill-name]/SK
 | Bash / Linux scripting | `bash-linux` |
 | PowerShell / Windows scripting | `powershell-windows` |
 | Performance profiling | `performance-profiling` |
+| Technical blogging & content creation (Hugo/Clarity) | `tech-blogging` |
 
 ---
 

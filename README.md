@@ -133,7 +133,7 @@ Tasks are automatically routed to the right specialist persona based on request 
 | `test-engineer` | Unit, integration, and E2E testing | `testing-patterns`, `tdd-workflow`, `webapp-testing` |
 | `performance-optimizer` | Web Vitals, profiling, bundle reduction | `performance-profiling` |
 | `seo-specialist` | SEO, E-E-A-T, and Generative AI search (GEO) | `seo-fundamentals`, `geo-fundamentals` |
-| `documentation-writer` | API docs, architecture specs, READMEs | `documentation-templates` |
+| `documentation-writer` | API docs, architecture specs, READMEs, technical blog posts | `documentation-templates`, `tech-blogging` |
 | `product-manager` | PRDs, user stories, requirements | `plan-writing`, `brainstorming` |
 | `product-owner` | Roadmaps, backlog grooming, MVP scope | `plan-writing`, `brainstorming` |
 | `qa-automation-engineer` | Automated test suites & CI regression | `webapp-testing`, `testing-patterns` |
@@ -142,7 +142,7 @@ Tasks are automatically routed to the right specialist persona based on request 
 
 ---
 
-## 🧩 Modular Skills (50)
+## 🧩 Modular Skills (51)
 
 Skills are loaded on demand by reading their `SKILL.md` file:
 
@@ -153,7 +153,7 @@ Skills are loaded on demand by reading their `SKILL.md` file:
 - **Testing & Quality**: `testing-patterns`, `webapp-testing`, `tdd-workflow`, `code-review-checklist`, `lint-and-validate`, `playwright-dev`.
 - **Architecture & Workflow**: `clean-code`, `architecture`, `app-builder`, `brainstorming`, `plan-writing`, `behavioral-modes`, `parallel-agents`, `systematic-debugging`.
 - **Operations & Systems**: `deployment-procedures`, `server-management`, `bash-linux`, `powershell-windows`, `performance-profiling`.
-- **SEO & Growth**: `seo-fundamentals`, `geo-fundamentals`, `i18n-localization`.
+- **SEO, Content & Growth**: `seo-fundamentals`, `geo-fundamentals`, `i18n-localization`, `tech-blogging`.
 - **Specialized Utilities**: `gitnexus`, `pdf`, `skill-creator`, `dfd-analysis`, `source-command-gsd-*`.
 
 ---

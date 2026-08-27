@@ -48,7 +48,7 @@ Specialist AI personas for different domains.
 | `debugger` | Root cause analysis | systematic-debugging |
 | `performance-optimizer` | Speed, Web Vitals | performance-profiling |
 | `seo-specialist` | Ranking, visibility | seo-fundamentals, geo-fundamentals |
-| `documentation-writer` | Manuals, docs | documentation-templates |
+| `documentation-writer` | Manuals, docs, blog posts | documentation-templates, tech-blogging |
 | `product-manager` | Requirements, user stories | plan-writing, brainstorming |
 | `product-owner` | Strategy, backlog, MVP | plan-writing, brainstorming |
 | `qa-automation-engineer` | E2E testing, CI pipelines | webapp-testing, testing-patterns |
@@ -176,6 +176,7 @@ Nested multi-skill group (`skills/golang/`), same grouping pattern as `game-deve
 | `parallel-agents` | Multi-agent patterns |
 | `mcp-builder` | Model Context Protocol |
 | `documentation-templates` | Doc formats |
+| `tech-blogging` | Technical blogging, Hugo/Clarity posts, Mermaid diagrams |
 | `i18n-localization` | Internationalization |
 | `performance-profiling` | Web Vitals, optimization |
 | `systematic-debugging` | Troubleshooting |

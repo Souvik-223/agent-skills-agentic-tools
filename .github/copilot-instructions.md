@@ -26,7 +26,7 @@ Domain knowledge, scripts, and agent personas are organized in the workspace:
 ```
 .agents/
 ├── agents/          → 20 specialist personas (frontend, backend, database, security, etc.)
-├── skills/          → 50 modular domain knowledge modules (read SKILL.md for patterns)
+├── skills/          → 50+ modular domain knowledge modules (read SKILL.md for patterns)
 ├── workflows/       → Step-by-step procedures (/brainstorm, /debug, /plan, /orchestrate, etc.)
 ├── scripts/         → Validation scripts (checklist.py, verify_all.py)
 └── rules/           → System rules and guidelines (GEMINI.md, CLAUDE.md)
@@ -53,6 +53,7 @@ Apply domain-specific patterns and reference the corresponding skills in `.agent
 | **Docker, CI/CD, Deployment, Server** | `devops-engineer` | `deployment-procedures`, `server-management` |
 | **Performance, Web Vitals, Optimization** | `performance-optimizer` | `performance-profiling` |
 | **SEO, Meta tags, GEO AI Search** | `seo-specialist` | `seo-fundamentals`, `geo-fundamentals` |
+| **Documentation, Manuals, Tech Blogging, Articles** | `documentation-writer` | `documentation-templates`, `tech-blogging` |
 | **MCP Servers, Tools** | `backend-specialist` | `mcp-builder`, `api-patterns` |
 
 ---

@@ -47,6 +47,7 @@ graph TD
 | **Deployment**      | "deploy", "production", "CI/CD", "docker"  | `devops-engineer`                           | ✅ YES       |
 | **Security Review** | "security", "vulnerability", "exploit"     | `security-auditor` + `penetration-tester`   | ✅ YES       |
 | **Performance**     | "slow", "optimize", "performance", "speed" | `performance-optimizer`                     | ✅ YES       |
+| **Documentation**   | "readme", "docs", "blog", "post", "article" | `documentation-writer`                      | ✅ YES       |
 | **Product Def**     | "requirements", "user story", "backlog", "MVP" | `product-owner`                             | ✅ YES       |
 | **New Feature**     | "build", "create", "implement", "new app"  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
 | **Complex Task**    | Multiple domains detected                  | `orchestrator` → multi-agent                | ⚠️ ASK FIRST |
@@ -112,6 +113,7 @@ function analyzeRequest(userMessage) {
 | **Debug**       | error, bug, crash, not working, issue      | `debugger`              |
 | **Performance** | slow, lag, optimize, cache, performance    | `performance-optimizer` |
 | **SEO**         | seo, meta, analytics, sitemap, robots      | `seo-specialist`        |
+| **Docs & Blog** | readme, docs, api doc, blog, post, hugo, clarity | `documentation-writer`  |
 | **Game**        | unity, godot, phaser, game, multiplayer    | `game-developer`        |
 
 ### Multi-Domain Tasks (Auto-invoke Orchestrator)
